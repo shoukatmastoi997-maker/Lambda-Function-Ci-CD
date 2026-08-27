@@ -1,0 +1,51 @@
+#!/bin/bash
+mkdir -p .github/workflows
+
+cat > .github/workflows/deploy.yml <<'YAML'
+name: Deploy Lambda
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::254185428379:role/GitHubActionsLambdaDeploy
+          aws-region: us-east-1
+
+      - name: Confirm identity
+        run: aws sts get-caller-identity
+
+      - name: Package
+        run: zip function.zip lambda_function.py
+
+      - name: Deploy
+        run: |
+          aws lambda update-function-code \
+            --function-name hello-cicd \
+            --zip-file fileb://function.zip \
+            --publish
+          aws lambda wait function-updated --function-name hello-cicd
+
+      - name: Smoke test
+        run: |
+          aws lambda invoke --function-name hello-cicd response.json
+          cat response.json
+          echo ""
+          if grep -q errorMessage response.json; then exit 1; fi
+YAML
