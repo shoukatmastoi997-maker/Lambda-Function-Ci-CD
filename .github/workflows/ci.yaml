@@ -1,18 +1,13 @@
-name: CI
-
-on: push
-
-jobs:
-  run-my-code:
-    runs-on: ubuntu-latest
+on: push                  # WHEN to run
+jobs:                     # WHAT to run
+  deploy:
+    runs-on: ubuntu-latest    # fresh temporary machine, destroyed after
+    permissions:
+      id-token: write         # REQUIRED for OIDC - see note below
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v4     # copy repo onto the runner
+      - uses: aws-actions/configure-aws-credentials@v4
         with:
-          python-version: '3.12'
-
-      - name: install pytest
-        run: pip install pytest
-      - name: Run pytest
-        run: pytest -v
+          role-to-assume: arn:aws:iam::254185428379:role/GitHubActionsLambdaDeploy
+          aws-region: us-east-1
+      - run: aws lambda update-function-code ...
