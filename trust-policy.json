@@ -11,7 +11,7 @@
         "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
       },
       "StringLike": {
-        "token.actions.githubusercontent.com:sub": "repo:shoukatmastoi997-maker/app:ref:refs/heads/main"
+        "token.actions.githubusercontent.com:sub": "repo:shoukatmastoi997-maker/app:*"
       }
     }
   }]
