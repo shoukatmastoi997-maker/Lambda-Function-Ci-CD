@@ -1,6 +1,15 @@
-{"Version":"2012-10-17","Statement":[{
-  "Effect":"Allow",
-  "Action":["lambda:UpdateFunctionCode","lambda:GetFunction",
-            "lambda:UpdateFunctionConfiguration","lambda:PublishVersion"],
-  "Resource":"arn:aws:lambda:us-east-1:254185428379:function:hello-cicd"
-}]}
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": [
+      "lambda:UpdateFunctionCode",
+      "lambda:UpdateFunctionConfiguration",
+      "lambda:GetFunction",
+      "lambda:GetFunctionConfiguration",
+      "lambda:PublishVersion",
+      "lambda:InvokeFunction"
+    ],
+    "Resource": "arn:aws:lambda:us-east-1:254185428379:function:hello-cicd"
+  }]
+}
