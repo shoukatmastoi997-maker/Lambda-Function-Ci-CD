@@ -12,5 +12,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run the app
-        run: python app.py
+      - name: install pytest
+        run: pip install pytest
+      - name: Run pytest
+        run: pytest -v
