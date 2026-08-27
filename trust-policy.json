@@ -12,8 +12,8 @@
       },
       "StringLike": {
         "token.actions.githubusercontent.com:sub": [
-          "repo:shoukatmastoi997-maker/app:*",
-          "repo:shoukatmastoi997-maker@*/app:*"
+          "repo:shoukatmastoi997-maker@265621995/app@1348148564:*",
+          "repo:shoukatmastoi997-maker/app:*"
         ]
       }
     }
