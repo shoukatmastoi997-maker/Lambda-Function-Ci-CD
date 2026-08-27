@@ -9,4 +9,5 @@ jobs:                     # WHAT to run
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::254185428379:role/GitHubActionsLambdaDeploy
+          aws-region: us-east-1
       - run: aws lambda update-function-code ...
