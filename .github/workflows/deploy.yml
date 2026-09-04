@@ -16,4 +16,5 @@ jobs:
           username: ${{secrets.Host_name}}
           key: ${{secrets.Secret_Key}}
           port: 22
-          
+          script: |
+            pwd
