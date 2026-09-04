@@ -19,6 +19,9 @@ jobs:
           script: |
             mkdir lambdafunction && cd lambdafunction
             pwd
-            git init
-            git pull origin main
+            if [ ! -d ".git" ] ; then
+              git clone https://github.com/shoukatmastoi997-maker/Lambda-Function-Ci-CD
+            else
+              git pull origin main
+            fi
             
