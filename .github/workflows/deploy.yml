@@ -12,4 +12,8 @@ jobs:
       - name: Deploy via ssh
         uses: appleboy/ssh-action@v1.0.3
         with:
+          host: ${{secrets.Host_IP}}
+          username: ${{secrets.Host_name}}
+          key: ${{secrets.Secret_Key}}
+          port: 22
           
