@@ -3,12 +3,14 @@ on:
   push:
     branches: 
       - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: checkout codes
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
+
       - name: Deploy via ssh
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -17,11 +19,10 @@ jobs:
           key: ${{secrets.Secret_Key}}
           port: 22
           script: |
-            mkdir lambdafunction && cd lambdafunction
-            pwd
-            if [ ! -d ".git" ] ; then
-              git clone https://github.com/shoukatmastoi997-maker/Lambda-Function-Ci-CD
+            mkdir -p lambdafunction
+            cd lambdafunction
+            if [ ! -d ".git" ]; then
+              git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git .
             else
               git pull origin main
             fi
-            
