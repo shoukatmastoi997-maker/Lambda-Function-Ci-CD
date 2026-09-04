@@ -19,5 +19,6 @@ jobs:
           script: |
             mkdir lambdafunction && cd lambdafunction
             pwd
+            git init
             git pull origin main
             
