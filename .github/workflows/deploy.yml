@@ -17,4 +17,5 @@ jobs:
           key: ${{secrets.Secret_Key}}
           port: 22
           script: |
+            mkdir lambdafunction && cd lambdafunction
             pwd
